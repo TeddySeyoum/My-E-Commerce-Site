@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teddy's E-Commerce - Contact Us</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styles specific to contact page */
+        #contact-details {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        #contact-details .details {
+            width: 40%;
+        }
+        #contact-details .details span,
+        #form-details form span {
+            font-size: 12px;
+        }
+        #contact-details .details h2,
+        #form-details form h2 {
+            font-size: 26px;
+            line-height: 35px;
+            padding: 20px 0;
+        }
+        #contact-details .details h3 {
+            font-size: 16px;
+            padding-bottom: 15px;
+        }
+        #contact-details .details li {
+            list-style: none;
+            display: flex;
+            padding: 10px 0;
+        }
+        #contact-details .details li i {
+            font-size: 14px;
+            padding-right: 22px;
+        }
+        #contact-details .details li p {
+            margin: 0;
+            font-size: 14px;
+        }
+        #contact-details .map {
+            width: 55%;
+            height: 400px;
+        }
+        #contact-details .map iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+        #form-details {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            padding: 30px;
+            border: 1px solid #e1e1e1;
+            border-radius: 15px;
+            background-color: #f9f9f9;
+        }
+        #form-details form {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+        }
+        #form-details form input,
+        #form-details form textarea,
+        #form-details form select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #cce7d0;
+            border-radius: 4px;
+            outline: none;
+            font-family: 'Spartan', sans-serif;
+        }
+        #form-details form button {
+            background-color: #088178;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        #form-details form button:hover {
+            background-color: #065e55;
+        }
+        #form-details .people {
+            width: 30%;
+        }
+        #form-details .people div {
+            display: flex;
+            align-items: flex-start;
+            padding-bottom: 25px;
+        }
+        #form-details .people div img {
+            width: 65px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        #form-details .people div p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        #form-details .people div p span {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* FAQ Section */
+        #faq {
+            margin: 40px 0;
+        }
+        #faq h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .faq-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .faq-item {
+            flex: 1 1 calc(33% - 20px);
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #088178;
+        }
+        .faq-item h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .faq-item p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* WhatsApp float button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: 0.3s;
+        }
+        .whatsapp-float i {
+            font-size: 24px;
+        }
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            color: white;
+        }
+
+        @media (max-width: 799px) {
+            #contact-details .details,
+            #contact-details .map,
+            #form-details form,
+            #form-details .people {
+                width: 100%;
+            }
+            .faq-item {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img src="img/logo.png" alt="logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a class="active" href="contact.html">Contact</a></li>
+                <li><a class="lg-bag" href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>#let's_talk</h2>
+        <p>LEAVE A MESSAGE, We love to hear from you!</p>
+    </section>
+
+    <section id="contact-details" class="section-p1">
+        <div class="details">
+            <span>GET IN TOUCH</span>
+            <h2>Visit one of our agency locations or contact us today</h2>
+            <h3>Head Office</h3>
+            <ul>
+                <li><i class="fal fa-map-marker-alt"></i><p>Gondar Kebele 18 st, George Square</p></li>
+                <li><i class="far fa-envelope"></i><p>teddyseyoum23@gmail.com</p></li>
+                <li><i class="fas fa-phone-alt"></i><p>+(251)946562227</p></li>
+                <li><i class="far fa-clock"></i><p>06:00 - 05:00, Monday - Saturday</p></li>
+            </ul>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.913393683022!2d37.464810!3d12.600000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1641b3b4f8b8b8b7%3A0x8b8b8b8b8b8b8b8b!2sGondar%2C%20Ethiopia!5e0!3m2!1sen!2sus!4v1610000000000!5m2!1sen!2sus" 
+                    allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <section id="form-details" class="section-p1">
+        <form action="https://formspree.io/f/mdayoqrb" method="POST" id="contactForm">
+            <span>LEAVE A MESSAGE</span>
+            <h2>We would love to hear from you</h2>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <input type="text" name="order_number" placeholder="Order Number (optional)">
+            <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <button type="submit" class="normal">Submit</button>
+            <div id="formStatus" style="margin-top: 15px; font-weight: bold;"></div>
+        </form>
+        <div class="people">
+            <div>
+                <img src="img/people/t1.jpg" alt="Customer Support">
+                <p><span>Teddy S.</span> Senior Support Agent<br>Phone: +251946562227</p>
+            </div>
+            <div>
+                <img src="img/people/t2.jpeg" alt="Sales">
+                <p><span>Harisen M.</span> Sales Manager<br>Email: sales@teddystore.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-p1">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <div class="faq-item"><h4>❓ How long does shipping take?</h4><p>Delivery within Ethiopia takes 3-5 business days. International shipping may take 7-14 days.</p></div>
+            <div class="faq-item"><h4>❓ What is your return policy?</h4><p>You can return items within 30 days of delivery for a full refund. Items must be unused.</p></div>
+            <div class="faq-item"><h4>❓ Do you ship internationally?</h4><p>Yes, we ship worldwide. Shipping costs vary by location.</p></div>
+            <div class="faq-item"><h4>❓ How can I track my order?</h4><p>Once your order ships, you'll receive a tracking number via email.</p></div>
+            <div class="faq-item"><h4>❓ Are the products original?</h4><p>100% authentic products directly from trusted brands.</p></div>
+            <div class="faq-item"><h4>❓ What payment methods do you accept?</h4><p>We accept credit/debit cards, PayPal, and cash on delivery (Ethiopia only).</p></div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/251946562227?text=Hello%20Teddy's%20Store%2C%20I%20have%20a%20question%20about%20your%20products" 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i> Chat with us
+    </a>
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext"><h4>Sign Up Newsletters</h4><p>Get E-mail Updates about our latest shop and <span>Special Offers.</span></p></div>
+        <div class="form"><input type="text" placeholder="Your email address"><button>Sign Up</button></div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col"><img class="logo" src="img/logo.png" alt=""><h4>Contact</h4><p><strong>Address: </strong>Gondar Kebele 18 st, George Square</p><p><strong>Phone: </strong>+(251)946562227</p><p><strong>Hours: </strong>06:00 - 05:00</p><div class="follow"><h4>Follow Us</h4><div class="icon"><i class="fab fa-twitter"></i><i class="fab fa-instagram"></i><i class="fab fa-pinterest-p"></i><i class="fab fa-youtube"></i></div></div></div>
+        <div class="col"><h4>About</h4><a href="#">About us</a><a href="#">Delivery Information</a><a href="#">Privacy Policy</a><a href="#">Terms & Conditions</a><a href="#">Contact Us</a></div>
+        <div class="col"><h4>My Account</h4><a href="#">Sign In</a><a href="#">View Cart</a><a href="#">My Wishlist</a><a href="#">Track My Orders</a><a href="#">Help</a></div>
+        <div class="col install"><h4>Install Store or Google play</h4><div class="row"><img src="img/pay/app.jpg" alt=""><img src="img/pay/play.jpg" alt=""></div><p>Secured Payment Gateways</p><img src="img/pay/pay.png" alt=""></div>
+        <div class="copyright"><p>&copy; 2026 by Teddy S. Front-end Developer</p></div>
+    </footer>
+
+    <script>
+        // Handle form submission with Formspree and show custom message
+        const form = document.getElementById('contactForm');
+        const statusDiv = document.getElementById('formStatus');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            statusDiv.innerHTML = "Sending...";
+            statusDiv.style.color = "blue";
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    statusDiv.innerHTML = "✅ Message sent successfully! We'll get back to you soon.";
+                    statusDiv.style.color = "green";
+                    form.reset();
+                } else {
+                    statusDiv.innerHTML = "❌ Oops! Something went wrong. Please try again.";
+                    statusDiv.style.color = "red";
+                }
+            } catch (error) {
+                statusDiv.innerHTML = "❌ Network error. Please check your connection.";
+                statusDiv.style.color = "red";
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

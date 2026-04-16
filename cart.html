@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teddy's E-Commerce - Shopping Cart</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Cart page specific styles */
+        #cart {
+            overflow-x: auto;
+        }
+        #cart table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            white-space: nowrap;
+        }
+        #cart table img {
+            width: 70px;
+        }
+        #cart table td:nth-child(1) {
+            width: 100px;
+            text-align: center;
+        }
+        #cart table td:nth-child(2) {
+            width: 150px;
+            text-align: center;
+        }
+        #cart table td:nth-child(3) {
+            width: 250px;
+            text-align: center;
+        }
+        #cart table td:nth-child(4),
+        #cart table td:nth-child(5),
+        #cart table td:nth-child(6) {
+            width: 150px;
+            text-align: center;
+        }
+        #cart table td:nth-child(5) input {
+            width: 70px;
+            padding: 10px 5px;
+        }
+        #cart table thead {
+            border: 1px solid #e2e9e1;
+            border-left: none;
+            border-right: none;
+        }
+        #cart table thead td {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 18px 0;
+        }
+        #cart table tbody tr td {
+            padding-top: 15px;
+        }
+        #cart table tbody td {
+            font-size: 13px;
+        }
+        #cart table tbody i {
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        #cart-add {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        #coupon {
+            width: 50%;
+            margin-bottom: 30px;
+        }
+        #coupon h3,
+        #subtotal h3 {
+            padding-bottom: 15px;
+        }
+        #coupon input {
+            padding: 10px 20px;
+            outline: none;
+            width: 60%;
+            margin-right: 10px;
+            border: 1px solid #e2e9e1;
+            border-radius: 4px;
+        }
+        #coupon button,
+        #subtotal button {
+            background-color: #088178;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        #coupon button:hover,
+        #subtotal button:hover {
+            background-color: #065e55;
+        }
+        #subtotal {
+            width: 50%;
+            margin-bottom: 30px;
+            border: 1px solid #e2e9e1;
+            padding: 30px;
+            border-radius: 10px;
+        }
+        #subtotal table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        #subtotal table td {
+            width: 50%;
+            border: 1px solid #e2e9e1;
+            padding: 10px;
+            font-size: 13px;
+        }
+        @media (max-width: 799px) {
+            #cart-add {
+                flex-direction: column;
+            }
+            #coupon, #subtotal {
+                width: 100%;
+            }
+        }
+        @media (max-width: 477px) {
+            #cart table td:nth-child(3) {
+                width: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="#"><img src="img/logo.png" alt="logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a class="active lg-bag" href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="far fa-shopping-bag"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <section id="page-header" class="cart-header">
+        <h2>#YourCart</h2>
+        <p>Review and manage your items</p>
+    </section>
+
+    <section id="cart" class="section-p1">
+        <table>
+            <thead>
+                <tr>
+                    <td>Remove</td>
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Subtotal</td>
+                </tr>
+            </thead>
+            <tbody id="cart-body">
+                <!-- Cart items will be injected here via JavaScript -->
+            </tbody>
+        </table>
+    </section>
+
+    <section id="cart-add" class="section-p1">
+        <div id="coupon">
+            <h3>Apply Coupon</h3>
+            <div>
+                <input type="text" id="coupon-code" placeholder="Enter your coupon">
+                <button id="apply-coupon">Apply</button>
+            </div>
+            <div id="coupon-message" style="margin-top: 10px; font-size: 12px;"></div>
+        </div>
+        <div id="subtotal">
+            <h3>Cart Totals</h3>
+            <table>
+                <tr>
+                    <td>Cart Subtotal</td>
+                    <td id="subtotal-amount">$0.00</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong id="total-amount">$0.00</strong></td>
+                </tr>
+            </table>
+            <button id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+        <div class="newstext">
+            <h4>Sign Up Newsletters</h4>
+            <p>Get E-mail Updates about our latest shop and <span>Special Offers.</span></p>
+        </div>
+        <div class="form">
+            <input type="text" placeholder="Your email address">
+            <button>Sign Up</button>
+        </div>
+    </section>
+
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="img/logo.png" alt="">
+            <h4>Contact</h4>
+            <p><strong>Address: </strong>Gondar Kebele 18 st, George Square</p>
+            <p><strong>Phone: </strong>+(251)946562227</p>
+            <p><strong>Hours: </strong>06:00 - 05:00</p>
+            <div class="follow">
+                <h4>Follow Us</h4>
+                <div class="icon">
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>About</h4>
+            <a href="#">About us</a>
+            <a href="#">Delivery Information</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <div class="col">
+            <h4>My Account</h4>
+            <a href="#">Sign In</a>
+            <a href="#">View Cart</a>
+            <a href="#">My Wishlist</a>
+            <a href="#">Track My Orders</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Install Store or Google play</h4>
+            <div class="row">
+                <img src="img/pay/app.jpg" alt="">
+                <img src="img/pay/play.jpg" alt="">
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="img/pay/pay.png" alt="">
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 by Teddy S. Front-end Developer</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample cart data (product list)
+        let cartItems = [
+            {
+                id: 1,
+                image: "img/products/f1.jpg",
+                name: "Cartoon Astronaut T-Shirt",
+                price: 78,
+                quantity: 1
+            },
+            {
+                id: 2,
+                image: "img/products/f2.jpg",
+                name: "Cotton Jersey Hoodie",
+                price: 89,
+                quantity: 1
+            },
+            {
+                id: 3,
+                image: "img/products/f3.jpg",
+                name: "Slim Fit Jeans",
+                price: 65,
+                quantity: 1
+            }
+        ];
+
+        // Coupon codes and their discount (percentage)
+        const coupons = {
+            "SAVE10": 0.10,
+            "WELCOME20": 0.20,
+            "FREESHIP": 0.05
+        };
+        let appliedCoupon = null;
+
+        // Function to render cart table
+        function renderCart() {
+            const tbody = document.getElementById('cart-body');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            let subtotal = 0;
+            cartItems.forEach(item => {
+                const itemSubtotal = item.price * item.quantity;
+                subtotal += itemSubtotal;
+                const row = document.createElement('tr');
+                row.setAttribute('data-id', item.id);
+                row.innerHTML = `
+                    <td><i class="far fa-times-circle remove-item" data-id="${item.id}"></i></td>
+                    <td><img src="${item.image}" alt="${item.name}"></td>
+                    <td>${item.name}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td><input type="number" class="item-qty" data-id="${item.id}" value="${item.quantity}" min="1" style="width:60px;"></td>
+                    <td class="item-subtotal">$${itemSubtotal.toFixed(2)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+            updateTotals(subtotal);
+        }
+
+        // Update subtotal and total with coupon discount
+        function updateTotals(subtotal) {
+            let total = subtotal;
+            let discount = 0;
+            if (appliedCoupon) {
+                discount = subtotal * coupons[appliedCoupon];
+                total = subtotal - discount;
+            }
+            document.getElementById('subtotal-amount').innerText = `$${subtotal.toFixed(2)}`;
+            document.getElementById('total-amount').innerHTML = `$${total.toFixed(2)}`;
+            if (discount > 0) {
+                const couponMsg = document.getElementById('coupon-message');
+                if (couponMsg) couponMsg.innerHTML = `Coupon "${appliedCoupon}" applied! You saved $${discount.toFixed(2)}.`;
+            }
+        }
+
+        // Recalculate when quantity changes
+        function recalcTotals() {
+            let newSubtotal = 0;
+            cartItems.forEach(item => {
+                newSubtotal += item.price * item.quantity;
+            });
+            updateTotals(newSubtotal);
+            // Also update displayed subtotals per row
+            const rows = document.querySelectorAll('#cart-body tr');
+            rows.forEach((row, idx) => {
+                const item = cartItems[idx];
+                if (item) {
+                    const subtotalCell = row.querySelector('.item-subtotal');
+                    if (subtotalCell) subtotalCell.innerText = `$${(item.price * item.quantity).toFixed(2)}`;
+                }
+            });
+        }
+
+        // Event listeners
+        document.addEventListener('click', (e) => {
+            // Remove item
+            if (e.target.classList.contains('remove-item')) {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                cartItems = cartItems.filter(item => item.id !== id);
+                renderCart();
+            }
+        });
+
+        document.addEventListener('change', (e) => {
+            if (e.target.classList.contains('item-qty')) {
+                const id = parseInt(e.target.getAttribute('data-id'));
+                const newQty = parseInt(e.target.value);
+                if (!isNaN(newQty) && newQty > 0) {
+                    const item = cartItems.find(i => i.id === id);
+                    if (item) item.quantity = newQty;
+                    recalcTotals();
+                } else {
+                    e.target.value = 1;
+                    const item = cartItems.find(i => i.id === id);
+                    if (item) item.quantity = 1;
+                    recalcTotals();
+                }
+            }
+        });
+
+        // Apply coupon
+        document.getElementById('apply-coupon')?.addEventListener('click', () => {
+            const codeInput = document.getElementById('coupon-code');
+            const code = codeInput.value.trim().toUpperCase();
+            const messageDiv = document.getElementById('coupon-message');
+            if (coupons[code]) {
+                appliedCoupon = code;
+                messageDiv.innerHTML = `✅ Coupon "${code}" applied!`;
+                messageDiv.style.color = "green";
+                // Recalculate totals
+                let subtotal = 0;
+                cartItems.forEach(item => subtotal += item.price * item.quantity);
+                updateTotals(subtotal);
+            } else {
+                appliedCoupon = null;
+                messageDiv.innerHTML = `❌ Invalid coupon code. Try SAVE10 or WELCOME20.`;
+                messageDiv.style.color = "red";
+                let subtotal = 0;
+                cartItems.forEach(item => subtotal += item.price * item.quantity);
+                updateTotals(subtotal);
+            }
+        });
+
+        // Checkout button alert (demo)
+        document.getElementById('checkout-btn')?.addEventListener('click', () => {
+            if (cartItems.length === 0) {
+                alert("Your cart is empty! Please add items before checkout.");
+            } else {
+                alert("Thank you for shopping with us! (Demo checkout - no payment processed)");
+            }
+        });
+
+        // Initial render
+        renderCart();
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
